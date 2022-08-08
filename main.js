@@ -1,20 +1,16 @@
-// arithemetic operating
-// + - * / %
+import axios from 'axios'
 
-// assignment operating
-// a += 1은 사용가능 파이썬은 안됨
-// 일치 연산 a === 1
+function fetchMovies() {
+    axios
+        .get('https://www.omdbapi.com/?apikey=5e7c7a82&s=frozen')
+        .then(resp => {
+            console.log(resp);
+            const h1El = document.querySelector('h1');
+            const imgEl = document.querySelector('img');
+            h1El.textContent = resp.data.Search[0].Title;
+            imgEl.src = resp.data.Search[0].Poster;
+        })
 
-// ternary operation
-import randTest from './getRandom';
-import typeChck from './getType';
+}
 
-
-let a = 1;
-let b = 4;
-console.log(a, b, a === b);
-b = a;
-console.log(a, b, a === b);
-a = 7;
-console.log(a, b, a === b);
-let c = 1;
+fetchMovies();
